@@ -1,0 +1,14 @@
+{
+  "note": "ridge and Morse retrained at force weight 1.0 (their force-optimal end of the committed sweep) with the identical data, split, and full budget; compare against results/main.json at weight 0.1",
+  "force_weight": 1.0,
+  "models": {
+    "linear": {
+      "test_e_mae_mev_per_atom": 18.2,
+      "test_f_mae_mev_per_a": 92.9
+    },
+    "morse": {
+      "test_e_mae_mev_per_atom": 13.26,
+      "test_f_mae_mev_per_a": 117.8
+    }
+  }
+}

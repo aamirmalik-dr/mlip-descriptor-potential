@@ -32,6 +32,7 @@ def main() -> int:
         run("make_sample_data.py")
     run("fetch_mp_anchors.py")
     run("run_benchmarks.py")
+    run("check_operating_point.py")
     run("make_figures.py")
     run("make_metrics.py")
     print("\nall stages complete")

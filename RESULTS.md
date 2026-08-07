@@ -2,8 +2,9 @@
 
 All numbers on this page were measured in this repository's fresh virtual
 environment on CPU (torch 2.13.0+cpu, float64), with fixed seeds, from the
-committed configs. Reproduce with `python scripts/run_all.py` (about 41
-minutes of benchmarks plus 8 minutes of data generation on a desktop CPU).
+committed configs. Reproduce with `python scripts/run_all.py` (about 45
+minutes of benchmarks and checks plus 8 minutes of data generation on a
+desktop CPU).
 
 Labels are surrogate model labels from chgnet 0.4.2 (checkpoint CHGNet
 v0.3.0, MPtrj-trained, BSD-3-Clause). Nothing here is a DFT calculation; the
@@ -37,6 +38,18 @@ Transfer = held-out compositions.
 | Morse (pairwise) | 21 | 20 | 12.32 | 128.7 | 13.39 | 136.0 |
 
 RMSE: BPNN 13.9 meV/atom / 92.5 meV/A; ridge 17.7 / 161.6; Morse 23.6 / 177.0.
+
+Operating-point check (`scripts/check_operating_point.py`,
+`results/operating_point.json`): the shared force weight 0.1 was selected by
+a sweep run on the BPNN, so the baselines were retrained at force weight 1.0,
+the force-optimal end of that sweep, with the identical data, split, and
+budget. The ridge model's force MAE improves only from 95.4 to 92.9 meV/A
+while its energy MAE doubles to 18.2 meV/atom; Morse improves from 128.7 to
+117.8 at a similar energy cost. The force gap is a representation limit, not
+an artifact of the shared training weight. The ridge sweep's grid edge was
+probed the same way: weight decays 0, 1e-8, and 1e-6 give validation scores
+identical to three decimals, so nothing better lies beyond the committed
+grid.
 
 Reading: at matched data and budget, the many-body networks earn their keep
 on forces, 1.9x over a linear readout of the identical symmetry functions
@@ -156,4 +169,5 @@ that way.
 
 Benchmark wall times on this machine (CPU): main 426 s, split-gap control
 861 s (6 trainings), learning curve 788 s, force weight 361 s, EOS 17 s,
-NVE 30 s. Dataset generation and labeling: about 8 minutes at 0.07 s/frame.
+NVE 30 s, operating-point check about 4 minutes (2 retrainings). Dataset
+generation and labeling: about 8 minutes at 0.07 s/frame.
