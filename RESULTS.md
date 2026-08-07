@@ -168,6 +168,6 @@ that way.
 ## Timings
 
 Benchmark wall times on this machine (CPU): main 426 s, split-gap control
-861 s (6 trainings), learning curve 788 s, force weight 361 s, EOS 17 s,
+861 s (6 trainings), learning curve 788 s, force weight 361 s, EOS 11 s,
 NVE 30 s, operating-point check about 4 minutes (2 retrainings). Dataset
 generation and labeling: about 8 minutes at 0.07 s/frame.
