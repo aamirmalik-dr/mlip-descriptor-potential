@@ -19,5 +19,5 @@ runs/
 notebooks/.ipynb_checkpoints/
 
 # committed on purpose (overriding common ignores):
-# data/sample_frames.extxyz, data/anchors.json, models/*.pt,
-# results/*.json, results/figures/*.png
+# data/sample_frames.extxyz, data/anchors_mp.json, data/anchors_literature.json,
+# models/*.pt, results/*.json, results/figures/*.png

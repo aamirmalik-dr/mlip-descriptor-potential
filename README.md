@@ -26,7 +26,7 @@ and MD snapshots, is represented):
 | ridge on the same descriptors | 147 | 9.60 | 95.4 |
 | Morse pair potential | 21 | 12.32 | 128.7 |
 
-![energy and force parity plus learning curve](results/figures/hero.png)
+![energy and force parity plus the force learning curve](results/figures/hero.png)
 
 The headline finding is where the many-body terms actually earn their keep at
 this data scale: forces. The BPNN cuts force error by 1.9x against a fairly
@@ -56,6 +56,12 @@ The honesty checks, reported rather than buried:
   (126 meV/A), weight 1 buys the best forces (43) at an energy cost, and 0.1
   is the best compromise (single-seed sweep; the non-monotonic 0.01 point
   shows run-to-run noise of a few meV/atom). The shipped model uses 0.1.
+- **Operating point.** That force weight was tuned on the BPNN, so the
+  baselines also got a rerun at their own force-optimal weight (1.0): ridge
+  forces improve only from 95.4 to 92.9 meV/A while its energy error doubles,
+  and Morse moves from 128.7 to 117.8. The force gap is a representation
+  limit, not an operating-point artifact
+  (`results/operating_point.json`).
 - **NVE drift.** At or below 0.001 meV/atom/ps over 3 ps at 300 to 900 K
   with a 2 fs timestep; total-energy fluctuations stay under 0.05 meV/atom
   (`results/figures/nve.png`). Autograd forces are exact gradients, and it
@@ -83,8 +89,9 @@ claim is made about HCP phases, defects, surfaces, or melts. See the
 ## Install and run
 
 ```bash
-python -m venv .venv && .venv/bin/pip install -e ".[dev]"        # core + tests
-pip install -e ".[teacher]"                                       # + CHGNet, for labeling
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -e ".[dev]"                             # core + tests
+pip install -e ".[teacher]"                         # + CHGNet, for labeling
 ```
 
 The committed sample data and checkpoints make the demo instant:
@@ -111,12 +118,12 @@ the final held-out metric with a figure at each step.
 ```
 src/descpot/        library (neighbors, descriptors, models, training, eos, md, cli)
 configs/            fixed-seed YAML configs for every benchmark
-scripts/            generate_data, fetch_mp_anchors, run_benchmarks, figures, notebook
+scripts/            generate_data, fetch_mp_anchors, run_benchmarks, operating-point check, figures, notebook
 data/               committed sample + anchors + provenance (full dataset gitignored)
 models/             committed trained checkpoints (BPNN, ridge, Morse)
 results/            metrics.json, per-benchmark JSONs, figures
 docs/               api.md, model_card.md
-tests/              pytest suite (43 tests)
+tests/              pytest suite (45 tests)
 ```
 
 ## Method notes
