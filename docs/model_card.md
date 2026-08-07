@@ -22,7 +22,7 @@ and budget for the benchmark comparison.
 - Parameters: 7,971 (BPNN); linear baseline 147; Morse 21.
 - Training: weighted per-atom-energy plus force MSE (force weight 0.1, chosen
   by the committed sweep), Adam, cosine decay, 80 epochs, batch 24, seed 0;
-  140 s on CPU.
+  141 s on CPU.
 
 ## Training data (surrogate labels, not DFT)
 
