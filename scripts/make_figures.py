@@ -1,6 +1,6 @@
 """Render all committed figures from results/*.json.
 
-Colors follow one fixed assignment everywhere: BPNN blue, linear ridge orange,
+Colors keep one fixed meaning everywhere: BPNN blue, linear ridge orange,
 Morse aqua, teacher dark gray. Anchors appear as reference markers.
 
 Usage:
@@ -54,6 +54,18 @@ def _load(name: str) -> dict:
     return json.loads((RESULTS / f"{name}.json").read_text())
 
 
+def _size_ticks(ax, sizes: list) -> None:
+    """Explicit ticks at the actual training sizes; the automatic log-axis
+    minor labels collide at this range (3x10^2 overlaps 4x10^2). Ticks closer
+    than 15 percent to their predecessor are dropped (882 sits on top of 800)."""
+    ticks = [sizes[0]]
+    for s in sizes[1:]:
+        if s > 1.15 * ticks[-1]:
+            ticks.append(s)
+    ax.set_xticks(ticks, [str(t) for t in ticks])
+    ax.minorticks_off()
+
+
 def _parity_panel(ax, ev, color, label, kind: str) -> None:
     if kind == "energy":
         x = np.array(ev["e_true_per_atom"])
@@ -90,14 +102,17 @@ def fig_hero() -> None:
     axes[1].set_xlabel("teacher force $F_x$ (eV/A)")
     axes[1].set_ylabel("BPNN force $F_x$ (eV/A)")
 
+    # the third panel carries the headline: the force advantage holds at every
+    # training-set size while the linear model plateaus at its representation
+    # limit, so the force learning curve is the one that belongs on the hero
     ax = axes[2]
     for name in ("bpnn", "linear", "morse"):
         pts = lc["models"][name]
         sizes = [p["size"] for p in pts]
-        maes = [p["e_mae_mev_per_atom"] for p in pts]
+        maes = [p["f_mae_mev_per_a"] for p in pts]
         ax.plot(sizes, maes, "o-", lw=1.8, ms=4.5, color=COLORS[name], label=LABELS[name])
         ax.annotate(
-            f"{maes[-1]:.1f}",
+            f"{maes[-1]:.0f}",
             (sizes[-1], maes[-1]),
             textcoords="offset points",
             xytext=(6, -2),
@@ -106,10 +121,12 @@ def fig_hero() -> None:
         )
     ax.set_xscale("log")
     ax.set_yscale("log")
+    _size_ticks(ax, [p["size"] for p in lc["models"]["bpnn"]])
+    ax.set_yticks([50, 100, 150, 200], ["50", "100", "150", "200"])
     ax.set_xlabel("training frames")
-    ax.set_ylabel("test energy MAE (meV/atom)")
-    ax.set_title("learning curve (matched budget)")
-    ax.legend(loc="lower left", fontsize=8)
+    ax.set_ylabel("test force MAE (meV/A)")
+    ax.set_title("force learning curve (matched budget)")
+    ax.legend(loc="upper right", fontsize=8)
     fig.tight_layout()
     fig.savefig(FIGS / "hero.png", bbox_inches="tight")
     plt.close(fig)
@@ -135,9 +152,9 @@ def fig_parity_grid() -> None:
 def fig_learning_curve() -> None:
     lc = _load("learning_curve")
     fig, axes = plt.subplots(1, 2, figsize=(9.0, 3.8))
-    for ax, key, ylabel in (
-        (axes[0], "e_mae_mev_per_atom", "test energy MAE (meV/atom)"),
-        (axes[1], "f_mae_mev_per_a", "test force MAE (meV/A)"),
+    for ax, key, ylabel, yticks in (
+        (axes[0], "e_mae_mev_per_atom", "test energy MAE (meV/atom)", [6, 10, 20, 40]),
+        (axes[1], "f_mae_mev_per_a", "test force MAE (meV/A)", [50, 100, 150, 200]),
     ):
         for name in ("bpnn", "linear", "morse"):
             pts = lc["models"][name]
@@ -152,6 +169,8 @@ def fig_learning_curve() -> None:
             )
         ax.set_xscale("log")
         ax.set_yscale("log")
+        _size_ticks(ax, [p["size"] for p in lc["models"]["bpnn"]])
+        ax.set_yticks(yticks, [str(t) for t in yticks])
         ax.set_xlabel("training frames")
         ax.set_ylabel(ylabel)
     axes[0].legend(fontsize=8)
@@ -283,7 +302,9 @@ def fig_eos() -> None:
 def fig_nve() -> None:
     nve = _load("nve")
     fig, ax = plt.subplots(figsize=(7.2, 3.8))
-    shades = [C_BPNN, C_LINEAR, C_MORSE]
+    # all three runs are the BPNN, so use shades of the BPNN blue rather than
+    # the other models' colors
+    shades = ["#123f78", C_BPNN, "#7aa7e0"]
     for run, color in zip(nve["runs"], shades):
         t = np.array(run["times_ps"])
         e = (np.array(run["e_tot"]) - run["e_tot"][0]) * 1000.0
