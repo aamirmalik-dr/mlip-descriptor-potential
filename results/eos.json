@@ -5,7 +5,7 @@
     "checkpoint": "CHGNet v0.3.0 (default pretrained weights, MPtrj-trained)",
     "license": "BSD-3-Clause (code and pretrained weights)"
   },
-  "anchors_source": "literature fallback: Materials Project entries read from the public website (CC BY 4.0), accessed 2026-08-07, plus standard experimental values for Nb",
+  "anchors_source": "Materials Project API (CC BY 4.0)",
   "compositions": {
     "Ti": {
       "volumes_model": [
@@ -84,10 +84,10 @@
       },
       "anchor": {
         "material_id": "mp-73",
-        "a0_bcc_a": 3.256,
-        "b0_gpa": 105.0,
-        "method": "DFT GGA-PBE (Materials Project)",
-        "citation": "Materials Project mp-73, Ti (Im-3m), K_VRH 105 GPa, Ti-Ti bond 2.82 A; https://materialsproject.org/materials/mp-73 (CC BY 4.0)"
+        "a0_bcc_a": 3.2516,
+        "volume_per_atom_a3": 17.19,
+        "spacegroup": "Im-3m",
+        "b0_gpa": 111.049
       }
     },
     "Zr": {
@@ -167,10 +167,10 @@
       },
       "anchor": {
         "material_id": "mp-41",
-        "a0_bcc_a": 3.58,
-        "b0_gpa": 89.0,
-        "method": "DFT GGA-PBE (Materials Project)",
-        "citation": "Materials Project mp-41, Zr (Im-3m), K_VRH 89 GPa, Zr-Zr bond 3.10 A, density 6.58 g/cm3; https://materialsproject.org/materials/mp-41 (CC BY 4.0)"
+        "a0_bcc_a": 3.5817,
+        "volume_per_atom_a3": 22.9739,
+        "spacegroup": "Im-3m",
+        "b0_gpa": 88.4
       }
     },
     "Nb": {
@@ -250,15 +250,10 @@
       },
       "anchor": {
         "material_id": "mp-75",
-        "a0_bcc_a": 3.32,
-        "b0_gpa": 174.0,
-        "method": "DFT GGA-PBE (Materials Project)",
-        "citation": "Materials Project mp-75, Nb (Im-3m), K_VRH 174 GPa, EOS V0 18.34 A3/atom; https://materialsproject.org/materials/mp-75 (CC BY 4.0)",
-        "experimental": {
-          "a0_bcc_a": 3.3,
-          "b0_gpa": 170.0,
-          "citation": "room-temperature experimental values for Nb, e.g. C. Kittel, Introduction to Solid State Physics, 8th ed. (a = 3.30 A; B = 170 GPa)"
-        }
+        "a0_bcc_a": 3.3176,
+        "volume_per_atom_a3": 18.2581,
+        "spacegroup": "Im-3m",
+        "b0_gpa": 172.05
       }
     },
     "TiZrNb": {
@@ -338,7 +333,7 @@
       }
     }
   },
-  "wall_seconds": 16.8,
+  "wall_seconds": 10.8,
   "config": {
     "teacher": "chgnet",
     "compositions": [

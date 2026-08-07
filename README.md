@@ -65,7 +65,7 @@ Equation of state: Birch-Murnaghan fits of the student track the teacher to
 0.002 A in a0 for BCC Nb (167 vs 167 GPa in B0) and 0.022 A for BCC Ti, both
 near the Materials Project anchors; BCC Zr is the weak spot, 0.047 A high in
 a0 and 22 GPa soft in B0 against the teacher, reported as such. For
-mechanically unstable BCC Ti the teacher itself sits 30 GPa below the MP B0,
+mechanically unstable BCC Ti the teacher itself sits 37 GPa below the MP B0,
 a teacher limitation the student inherits (`results/figures/eos.png`).
 
 Full numbers: [RESULTS.md](RESULTS.md) and `results/metrics.json`.

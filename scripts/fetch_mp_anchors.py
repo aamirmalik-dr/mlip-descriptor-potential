@@ -44,20 +44,31 @@ def main() -> int:
     with MPRester(key) as mpr:
         for formula in ("Ti", "Zr", "Nb", "TiZr", "TiNb", "ZrNb", "NbZr", "NbTi", "ZrTi"):
             docs = mpr.materials.summary.search(
-                formula=formula, fields=["material_id", "structure", "symmetry", "k_vrh"]
+                formula=formula,
+                fields=["material_id", "structure", "symmetry", "bulk_modulus"],
             )
             for doc in docs:
                 if doc.symmetry is None or doc.symmetry.symbol != "Im-3m":
                     continue
                 st = doc.structure
-                a = float(st.lattice.a)
+                # the API returns the primitive cell; recover the conventional
+                # BCC lattice constant from the volume per atom (2 atoms per
+                # conventional cell)
+                v_atom = float(st.volume) / len(st)
                 entry = {
                     "material_id": str(doc.material_id),
-                    "a0_bcc_a": a,
+                    "a0_bcc_a": round((2.0 * v_atom) ** (1.0 / 3.0), 4),
+                    "volume_per_atom_a3": round(v_atom, 4),
                     "spacegroup": "Im-3m",
                 }
-                if doc.k_vrh is not None:
-                    entry["b0_gpa"] = float(doc.k_vrh)
+                bulk = doc.bulk_modulus
+                vrh = None
+                if isinstance(bulk, dict):
+                    vrh = bulk.get("vrh")
+                elif bulk is not None:
+                    vrh = getattr(bulk, "vrh", None)
+                if vrh is not None:
+                    entry["b0_gpa"] = float(vrh)
                 anchors["entries"][formula] = entry
                 break
     out = REPO / "data" / "anchors_mp.json"

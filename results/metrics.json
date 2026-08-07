@@ -2,7 +2,7 @@
   "label_provenance": {
     "training_labels": "surrogate model labels from chgnet 0.4.2 (CHGNet v0.3.0 (default pretrained weights, MPtrj-trained)), NOT DFT",
     "teacher_license": "BSD-3-Clause (code and pretrained weights)",
-    "dft_anchors": "literature fallback: Materials Project entries read from the public website (CC BY 4.0), accessed 2026-08-07, plus standard experimental values for Nb"
+    "dft_anchors": "Materials Project API (CC BY 4.0)"
   },
   "dataset": {
     "n_frames": 1566,
@@ -141,8 +141,8 @@
       "a0_teacher": 3.268,
       "b0_model_gpa": 70.5,
       "b0_teacher_gpa": 74.3,
-      "a0_anchor_dft": 3.256,
-      "b0_anchor_dft_gpa": 105.0,
+      "a0_anchor_dft": 3.2516,
+      "b0_anchor_dft_gpa": 111.049,
       "anchor_id": "mp-73"
     },
     "Zr": {
@@ -150,8 +150,8 @@
       "a0_teacher": 3.595,
       "b0_model_gpa": 66.8,
       "b0_teacher_gpa": 88.6,
-      "a0_anchor_dft": 3.58,
-      "b0_anchor_dft_gpa": 89.0,
+      "a0_anchor_dft": 3.5817,
+      "b0_anchor_dft_gpa": 88.4,
       "anchor_id": "mp-41"
     },
     "Nb": {
@@ -159,8 +159,8 @@
       "a0_teacher": 3.327,
       "b0_model_gpa": 167.5,
       "b0_teacher_gpa": 166.6,
-      "a0_anchor_dft": 3.32,
-      "b0_anchor_dft_gpa": 174.0,
+      "a0_anchor_dft": 3.3176,
+      "b0_anchor_dft_gpa": 172.05,
       "anchor_id": "mp-75"
     },
     "TiZrNb": {
@@ -201,7 +201,7 @@
     "split_gap": 860.6,
     "learning_curve": 788.1,
     "force_weight": 361.4,
-    "eos": 16.8,
+    "eos": 10.8,
     "nve": 30.0
   }
 }

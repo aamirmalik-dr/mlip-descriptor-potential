@@ -115,19 +115,22 @@ few meV/atom, far smaller than the 0-vs-0.1 force gap.
 ## Equation of state (configs/eos.yaml)
 
 Birch-Murnaghan fits over +/-6% volume scans, ideal BCC cells. Anchor = DFT
-values from the Materials Project (CC BY 4.0; read from the public entries,
-committed with citations in `data/anchors_literature.json`).
+values fetched from the Materials Project API (CC BY 4.0) by
+`scripts/fetch_mp_anchors.py`, committed in `data/anchors_mp.json`; the
+conventional a0 is recovered from the primitive-cell volume per atom. A
+citation-carrying literature fallback (`data/anchors_literature.json`, values
+consistent within 0.005 A and 6 GPa) is committed for keyless runs.
 
 | composition | a0 model (A) | a0 teacher (A) | a0 DFT anchor (A) | B0 model (GPa) | B0 teacher (GPa) | B0 DFT anchor (GPa) |
 |---|---|---|---|---|---|---|
-| Ti | 3.246 | 3.268 | 3.256 (mp-73) | 70.5 | 74.3 | 105 |
-| Zr | 3.642 | 3.595 | 3.58 (mp-41) | 66.8 | 88.6 | 89 |
-| Nb | 3.325 | 3.327 | 3.32 (mp-75) | 167.5 | 166.6 | 174 |
+| Ti | 3.246 | 3.268 | 3.252 (mp-73) | 70.5 | 74.3 | 111 |
+| Zr | 3.642 | 3.595 | 3.582 (mp-41) | 66.8 | 88.6 | 88 |
+| Nb | 3.325 | 3.327 | 3.318 (mp-75) | 167.5 | 166.6 | 172 |
 | TiZrNb | 3.378 | 3.386 | - | 99.3 | 107.7 | - |
 
 Nb is essentially perfect against the teacher (0.002 A, 1 GPa) and close to
 the DFT anchor. Ti tracks the teacher well (0.022 A, 4 GPa); the teacher
-itself sits 30 GPa below the MP B0 for this mechanically unstable phase, and
+itself sits 37 GPa below the MP B0 for this mechanically unstable phase, and
 a distilled model cannot beat its teacher. BCC Zr is the honest weak spot:
 the student comes out 0.047 A large in a0 and 22 GPa soft in B0 relative to
 the teacher, the price of a small model whose training weight for elemental
