@@ -27,8 +27,8 @@ by the equation-of-state benchmark, see "Anchors" below.
   Materials Project API key is configured in `MP_API_KEY`; preferred over the
   literature file when present. MP API data is CC BY 4.0.
 - `full/dataset.extxyz` - the full labeled dataset, gitignored. Regenerate with
-  `python scripts/generate_data.py` (needs the `teacher` extra; roughly 15
-  minutes on CPU).
+  `python scripts/generate_data.py` (needs the `teacher` extra; about 8 minutes
+  on CPU, see the timings in `provenance.json`).
 
 ## How the full dataset is built
 

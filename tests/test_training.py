@@ -76,7 +76,10 @@ def test_force_weight_changes_optimization():
     for fw in (0.0, 1.0):
         model = make_bpnn(hidden=(8,), seed=1)
         settings = TrainSettings(epochs=3, batch_size=6, force_weight=fw, val_every=3)
-        hist = train_potential(model, frames, train_idx, val_idx, settings)
+        # the first 12 frames span only two of three elements, so the
+        # rank-deficiency guard on the reference fit must fire
+        with pytest.warns(UserWarning, match="rank-deficient"):
+            hist = train_potential(model, frames, train_idx, val_idx, settings)
         losses[fw] = hist["loss_f"][-1]
     # with force_weight=0 the force loss is not even computed
     assert losses[0.0] == 0.0
