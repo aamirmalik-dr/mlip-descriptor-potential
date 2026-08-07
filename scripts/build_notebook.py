@@ -39,14 +39,20 @@ Two things to keep in mind:
     ),
     (
         "code",
-        """import numpy as np
-import matplotlib.pyplot as plt
+        """import matplotlib.pyplot as plt
+import numpy as np
 import torch
 
-from descpot.structures import bcc_supercell, rattle_batch, strain_batch
 from descpot.data import group_split
 from descpot.descriptors import AcsfParams, build_graph, compute_descriptors
-from descpot.training import TrainSettings, make_bpnn, train_potential, prepare_batches, evaluate_batches
+from descpot.structures import rattle_batch, strain_batch
+from descpot.training import (
+    TrainSettings,
+    evaluate_batches,
+    make_bpnn,
+    prepare_batches,
+    train_potential,
+)
 
 np.random.seed(0)
 torch.manual_seed(0)
