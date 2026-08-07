@@ -47,6 +47,9 @@ select = ["E", "F", "I", "W", "UP"]
 [tool.ruff.lint.per-file-ignores]
 # notebook cell sources are string literals; cell lines may exceed the limit
 "scripts/build_notebook.py" = ["E501"]
+# tutorial cells use the compact plotting idiom (chained axis calls on one
+# line) and long labels; real code smells (unused imports, order) still apply
+"notebooks/*.ipynb" = ["E501", "E702"]
 
 [tool.black]
 line-length = 100
