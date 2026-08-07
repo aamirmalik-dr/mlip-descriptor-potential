@@ -1,0 +1,23 @@
+# virtual environments and caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# full datasets are regenerated, only the committed sample ships
+data/full/
+data/*.tmp
+
+# large or intermediate artifacts
+*.ckpt
+runs/
+notebooks/.ipynb_checkpoints/
+
+# committed on purpose (overriding common ignores):
+# data/sample_frames.extxyz, data/anchors.json, models/*.pt,
+# results/*.json, results/figures/*.png

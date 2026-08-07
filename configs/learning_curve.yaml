@@ -1,0 +1,15 @@
+# Test error vs training-set size, all three models, fixed group-split test set.
+holdout_compositions: [Ti2ZrNb, TiZrNb2]
+split_seed: 0
+subset_seed: 3
+sizes: [100, 200, 400, 800]   # the full train split is appended automatically
+hidden: [32, 32]
+ridge_alphas: [1.0e-6, 1.0e-4, 1.0e-2]
+train:
+  epochs: 50
+  batch_size: 24
+  lr: 3.0e-3
+  weight_decay: 0.0
+  force_weight: 0.1
+  val_every: 5
+  seed: 0

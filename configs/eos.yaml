@@ -1,0 +1,7 @@
+# Equation-of-state scans: student vs teacher vs external DFT anchors.
+teacher: chgnet
+compositions: [Ti, Zr, Nb, TiZrNb]
+reps: 2
+points: 13
+span: 0.06
+seed: 0

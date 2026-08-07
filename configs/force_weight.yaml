@@ -1,0 +1,13 @@
+# Force-loss weight sweep for the BPNN: the energy-vs-force accuracy tradeoff.
+holdout_compositions: [Ti2ZrNb, TiZrNb2]
+split_seed: 0
+hidden: [32, 32]
+force_weights: [0.0, 0.01, 0.1, 1.0]
+train:
+  epochs: 50
+  batch_size: 24
+  lr: 3.0e-3
+  weight_decay: 0.0
+  force_weight: 0.1
+  val_every: 5
+  seed: 0

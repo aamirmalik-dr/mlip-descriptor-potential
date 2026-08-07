@@ -1,0 +1,14 @@
+# Control: identical BPNN and budget under the group split vs the optimistic
+# random-frame split, repeated over three split seeds to separate the protocol
+# effect from test-set-difficulty noise.
+holdout_compositions: [Ti2ZrNb, TiZrNb2]
+split_seeds: [0, 1, 2]
+hidden: [32, 32]
+train:
+  epochs: 80
+  batch_size: 24
+  lr: 3.0e-3
+  weight_decay: 0.0
+  force_weight: 0.1
+  val_every: 5
+  seed: 0

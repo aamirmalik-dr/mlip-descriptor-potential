@@ -1,0 +1,57 @@
+{
+  "weights": [
+    0.0,
+    0.01,
+    0.1,
+    1.0
+  ],
+  "runs": [
+    {
+      "force_weight": 0.0,
+      "e_mae_mev_per_atom": 7.984228264115453,
+      "f_mae_mev_per_a": 125.58750274405398
+    },
+    {
+      "force_weight": 0.01,
+      "e_mae_mev_per_atom": 10.043564002727221,
+      "f_mae_mev_per_a": 73.53600395518106
+    },
+    {
+      "force_weight": 0.1,
+      "e_mae_mev_per_atom": 6.097559396684067,
+      "f_mae_mev_per_a": 47.63170567862025
+    },
+    {
+      "force_weight": 1.0,
+      "e_mae_mev_per_atom": 7.062233020924717,
+      "f_mae_mev_per_a": 43.04130006049359
+    }
+  ],
+  "wall_seconds": 361.4,
+  "config": {
+    "holdout_compositions": [
+      "Ti2ZrNb",
+      "TiZrNb2"
+    ],
+    "split_seed": 0,
+    "hidden": [
+      32,
+      32
+    ],
+    "force_weights": [
+      0.0,
+      0.01,
+      0.1,
+      1.0
+    ],
+    "train": {
+      "epochs": 50,
+      "batch_size": 24,
+      "lr": 0.003,
+      "weight_decay": 0.0,
+      "force_weight": 0.1,
+      "val_every": 5,
+      "seed": 0
+    }
+  }
+}

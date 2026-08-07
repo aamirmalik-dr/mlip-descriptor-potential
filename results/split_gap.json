@@ -1,0 +1,85 @@
+{
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "group": [
+    {
+      "split_seed": 0,
+      "n_test": 192,
+      "e_mae_mev_per_atom": 8.039764153529008,
+      "f_mae_mev_per_a": 50.55794605250682
+    },
+    {
+      "split_seed": 1,
+      "n_test": 192,
+      "e_mae_mev_per_atom": 10.648416049820788,
+      "f_mae_mev_per_a": 65.78096394091989
+    },
+    {
+      "split_seed": 2,
+      "n_test": 156,
+      "e_mae_mev_per_atom": 6.951533931908916,
+      "f_mae_mev_per_a": 51.483106775015685
+    }
+  ],
+  "random_frame": [
+    {
+      "split_seed": 0,
+      "n_test": 183,
+      "e_mae_mev_per_atom": 2.788170568490265,
+      "f_mae_mev_per_a": 42.510113206490495
+    },
+    {
+      "split_seed": 1,
+      "n_test": 183,
+      "e_mae_mev_per_atom": 3.279250518872872,
+      "f_mae_mev_per_a": 45.657256067913686
+    },
+    {
+      "split_seed": 2,
+      "n_test": 183,
+      "e_mae_mev_per_atom": 3.0843866336853583,
+      "f_mae_mev_per_a": 41.4789754006933
+    }
+  ],
+  "group_mean": {
+    "e_mae_mev_per_atom": 8.54657137841957,
+    "e_mae_std": 1.5512091027829653,
+    "f_mae_mev_per_a": 55.94067225614746,
+    "f_mae_std": 6.96838029586356
+  },
+  "random_frame_mean": {
+    "e_mae_mev_per_atom": 3.050602573682832,
+    "e_mae_std": 0.2019008031181594,
+    "f_mae_mev_per_a": 43.215448225032496,
+    "f_mae_std": 1.777194502542915
+  },
+  "note": "the random-frame protocol is an optimistic control only; sibling frames from one generation batch appear on both sides of that split",
+  "wall_seconds": 860.6,
+  "config": {
+    "holdout_compositions": [
+      "Ti2ZrNb",
+      "TiZrNb2"
+    ],
+    "split_seeds": [
+      0,
+      1,
+      2
+    ],
+    "hidden": [
+      32,
+      32
+    ],
+    "train": {
+      "epochs": 80,
+      "batch_size": 24,
+      "lr": 0.003,
+      "weight_decay": 0.0,
+      "force_weight": 0.1,
+      "val_every": 5,
+      "seed": 0
+    }
+  }
+}

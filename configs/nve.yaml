@@ -1,0 +1,5 @@
+# NVE stability: total-energy drift of the trained BPNN, from-scratch Verlet.
+runs:
+  - {composition: TiZrNb, reps: 2, temperature_k: 300.0, timestep_fs: 2.0, steps: 1500, seed: 0}
+  - {composition: TiZrNb, reps: 2, temperature_k: 900.0, timestep_fs: 2.0, steps: 1500, seed: 1}
+  - {composition: Nb, reps: 2, temperature_k: 600.0, timestep_fs: 2.0, steps: 1500, seed: 2}

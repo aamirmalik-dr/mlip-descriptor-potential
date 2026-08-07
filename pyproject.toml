@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "descpot"
+version = "0.1.0"
+description = "From-scratch Behler-Parrinello neural network potential for BCC TiZrNb solid solutions: original ACSF descriptors, per-element networks, autograd forces, and a benchmark against linear and pair-potential baselines"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Aamir Malik" }]
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "matplotlib>=3.7",
+    "torch>=2.0",
+    "ase>=3.22",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+teacher = ["chgnet>=0.3"]
+mp = ["mp-api>=0.41"]
+dev = [
+    "pytest>=7.0",
+    "ruff==0.15.22",
+    "black==26.5.1",
+    "nbclient>=0.9",
+    "nbformat>=5.9",
+    "ipykernel>=6.25",
+]
+
+[project.scripts]
+descpot = "descpot.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# notebook cell sources are string literals; cell lines may exceed the limit
+"scripts/build_notebook.py" = ["E501"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
