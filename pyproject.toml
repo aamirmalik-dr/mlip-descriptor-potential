@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "descpot"
-version = "0.1.0"
+version = "0.1.1"
 description = "From-scratch Behler-Parrinello neural network potential for BCC TiZrNb solid solutions: original ACSF descriptors, per-element networks, autograd forces, and a benchmark against linear and pair-potential baselines"
 readme = "README.md"
 requires-python = ">=3.10"
