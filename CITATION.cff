@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this code, data, or benchmark results, please cite the repository."
+title: "mlip-descriptor-potential: from-scratch Behler-Parrinello neural network potential for BCC TiZrNb"
+type: software
+authors:
+  - family-names: Malik
+    given-names: Aamir
+version: 0.1.0
+date-released: "2026-08-07"
+license: MIT
+repository-code: "https://github.com/aamirmalik-dr/mlip-descriptor-potential"
+keywords:
+  - machine-learning interatomic potential
+  - Behler-Parrinello
+  - atom-centered symmetry functions
+  - TiZrNb
+  - refractory alloy
+  - PyTorch
