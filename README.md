@@ -1,5 +1,7 @@
 # mlip-descriptor-potential
 
+[![ci](https://github.com/aamirmalik-dr/mlip-descriptor-potential/actions/workflows/ci.yml/badge.svg)](https://github.com/aamirmalik-dr/mlip-descriptor-potential/actions/workflows/ci.yml)
+
 A Behler-Parrinello neural network potential for BCC TiZrNb solid solutions,
 built from scratch: my own periodic neighbor lists, atom-centered symmetry
 functions, per-element networks, autograd forces, and training loop, in plain
@@ -143,12 +145,20 @@ tests/              pytest suite (45 tests)
   batch, a strain batch, an MD run) and hold out whole compositions. The
   random-frame alternative is computed once as a control and reported.
 
+## Related repositories
+
+This repository is one of four on machine-learned interatomic potentials for BCC TiZrNb. Each is standalone, imports nothing from the others, and can be cloned and run on its own. The four share the teacher choice and the split discipline (held-out generation groups and compositions) so that their numbers can be read side by side.
+
+- [graph-neural-forcefield](https://github.com/aamirmalik-dr/graph-neural-forcefield): message-passing potential for BCC TiZrNb, benchmarked head to head against the descriptor approach at matched data and budget.
+- [alloy-mlip-bench](https://github.com/aamirmalik-dr/alloy-mlip-bench): the potentials deployed as ASE calculators and benchmarked property by property against pretrained foundation potentials.
+- [forcefield-active-learning](https://github.com/aamirmalik-dr/forcefield-active-learning): query-by-committee active learning for TiZrNb potentials, an honest label-budget benchmark against random selection.
+- [pd-hydrogen-diffusion-dft](https://github.com/aamirmalik-dr/pd-hydrogen-diffusion-dft): a full density-functional calculation with CP-PAW, hydrogen diffusion in fcc palladium, the kind of reference calculation the TiZrNb repositories stand in for with surrogate labels.
+
 ## Author
 
 Aamir Malik
-
-- GitHub: https://github.com/aamirmalik-dr
-- LinkedIn: https://linkedin.com/in/aamirmalik-dr
+GitHub: https://github.com/aamirmalik-dr
+LinkedIn: https://linkedin.com/in/aamirmalik-dr
 
 ## License
 
